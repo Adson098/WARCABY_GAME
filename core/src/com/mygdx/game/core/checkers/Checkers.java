@@ -8,13 +8,13 @@ public class Checkers {
     protected colorT currentColor;
     protected PosMovesCalculator movesCalculator;
     private colorT turn;
+    protected Board board;
 
     public Checkers(){
         currentColor = colorT.white;
         turn = colorT.white;
-       // board = new Board(currentColor);
+        board = new Board();
         movesCalculator = new PosMovesCalculator();
-        //currentCell = new Cell();
 
     }
     /*

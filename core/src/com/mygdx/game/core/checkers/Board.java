@@ -7,7 +7,9 @@ public class Board {
     // Atrybuty
     public Cell[] plansza = new Cell[64];
 
-
+    public Board(){
+        createNewBoard();
+    }
     // Metody
     public void createNewBoard()
     {

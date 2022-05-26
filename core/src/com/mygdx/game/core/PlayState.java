@@ -3,17 +3,20 @@ package com.mygdx.game.core;
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.CONFIG;
 import com.mygdx.game.core.checkers.CheckersInputManager;
+import com.mygdx.game.core.checkers.CheckersRenderer;
 import com.mygdx.game.engine.GameState;
 import com.mygdx.game.engine.GameStateManager;
 
 public class PlayState implements GameState {
     private CheckersInputManager chessInput;
     private GameStateManager gsm;
+    private CheckersRenderer renderer;
     private int TimeForPlayer;
 
     public PlayState(GameStateManager gsm, int itimeForPlayer) {
         this.gsm = gsm;
         TimeForPlayer = itimeForPlayer;
+        renderer = new CheckersRenderer();
     }
 
     @Override
@@ -28,7 +31,7 @@ public class PlayState implements GameState {
     @Override
     public void render() {
 
-        //chessRenderer.render();
+        renderer.render();
     }
 
 
