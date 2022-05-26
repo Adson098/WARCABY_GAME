@@ -3,6 +3,7 @@ package com.mygdx.game.gui;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class DigitDisplay {
 
@@ -20,7 +21,9 @@ public class DigitDisplay {
 
     private int currentNum;
 
-    public DigitDisplay(){
+    public int x,y,w,h;
+
+    public DigitDisplay(int x, int y, int w, int h){
         t1 = new Texture(Gdx.files.internal("png/menu/digits/1.png"));
         t2 = new Texture(Gdx.files.internal("png/menu/digits/2.png"));
         t3 = new Texture(Gdx.files.internal("png/menu/digits/3.png"));
@@ -32,6 +35,8 @@ public class DigitDisplay {
         t9 = new Texture(Gdx.files.internal("png/menu/digits/9.png"));
 
         sprite = new Sprite(t3);
+        sprite.setPosition(x,y);
+        sprite.setSize(w,h);
     }
 
     public Sprite getSprite(){
@@ -49,6 +54,15 @@ public class DigitDisplay {
         if(currentNum  <1)currentNum =9;
         setSprite(currentNum);
 
+    }
+
+    public void render(SpriteBatch sb){
+        sprite.draw(sb);
+
+    }
+
+    public int getNumber(){
+        return currentNum;
     }
 
     private void setSprite(int i){

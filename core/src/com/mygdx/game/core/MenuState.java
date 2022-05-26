@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.mygdx.game.engine.GameState;
 import com.mygdx.game.engine.GameStateManager;
 import com.mygdx.game.gui.Button;
+import com.mygdx.game.gui.DigitDisplay;
 
 public class MenuState implements GameState {
 
@@ -38,6 +39,8 @@ public class MenuState implements GameState {
     private Sprite spriteText2;
     private Sprite spriteBoard;
     private Sprite spriteLogo;
+
+    private DigitDisplay d1;
     //private Sprite
 
     public MenuState(GameStateManager gsm) {
@@ -66,6 +69,8 @@ public class MenuState implements GameState {
         b3 = new Button(button3, button3H, 225,160,25,25);
         b4 = new Button(button4, button4H, 300, 160, 25,25);
 
+        d1 = new DigitDisplay(262,160,25,25);
+
         spriteBG = new Sprite(bg);
         spriteText1 = new Sprite(text2);
         spriteText1.setPosition(50,150);
@@ -91,6 +96,7 @@ public class MenuState implements GameState {
         spriteText2.draw(sb);
         spriteBoard.draw(sb);
         spriteLogo.draw(sb);
+        d1.render(sb);
         b1.render(sb);
         b2.render(sb);
         b3.render(sb);
@@ -113,7 +119,13 @@ public class MenuState implements GameState {
         b3.hover(x,y);
         b4.hover(x,y);
         if(b1.click(x,y)){
-            gsm.push(new PlayState(gsm));
+            gsm.push(new PlayState(gsm,d1.getNumber()));
+        }
+        if(b3.click(x,y)){
+            d1.plusOne();
+        }
+        if(b4.click(x,y)){
+            d1.minusOne();
         }
     }
 

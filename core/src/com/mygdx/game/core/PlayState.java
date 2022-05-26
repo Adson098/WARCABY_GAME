@@ -9,9 +9,11 @@ import com.mygdx.game.engine.GameStateManager;
 public class PlayState implements GameState {
     private CheckersInputManager chessInput;
     private GameStateManager gsm;
+    private int TimeForPlayer;
 
-    public PlayState(GameStateManager gsm) {
+    public PlayState(GameStateManager gsm, int itimeForPlayer) {
         this.gsm = gsm;
+        itimeForPlayer = itimeForPlayer;
     }
     //private Board board;
 
