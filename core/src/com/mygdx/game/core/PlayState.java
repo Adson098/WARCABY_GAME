@@ -2,7 +2,7 @@ package com.mygdx.game.core;
 
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.CONFIG;
-import com.mygdx.game.core.chess.CheckersInputManager;
+import com.mygdx.game.core.checkers.CheckersInputManager;
 import com.mygdx.game.engine.GameState;
 import com.mygdx.game.engine.GameStateManager;
 
@@ -13,13 +13,11 @@ public class PlayState implements GameState {
 
     public PlayState(GameStateManager gsm, int itimeForPlayer) {
         this.gsm = gsm;
-        itimeForPlayer = itimeForPlayer;
+        TimeForPlayer = itimeForPlayer;
     }
-    //private Board board;
 
     @Override
     public void create() {
-        System.out.println("gownoasdfff");
       //  chessRenderer = new ChessRenderer();
         //chessInput = new CheckersInputManager(chessRenderer);
         //board = new Board();

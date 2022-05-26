@@ -1,18 +1,16 @@
-package com.mygdx.game.core.chess;
+package com.mygdx.game.core.checkers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.CONFIG;
 import com.mygdx.game.core.mouseStateT;
-import com.mygdx.game.piece.Empty;
-import com.mygdx.game.vector2i;
 
 public class CheckersInputManager {
 
     mouseStateT mouseState;
-    private Chess chess;
+    private Checkers chess;
 
-    public CheckersInputManager(Chess ichess){
+    public CheckersInputManager(Checkers ichess){
         chess = ichess;
         mouseState = mouseStateT.let;
     }

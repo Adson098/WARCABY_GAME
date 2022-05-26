@@ -1,26 +1,32 @@
 package com.mygdx.game.piece;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.mygdx.game.core.chess.colorT;
-import com.mygdx.game.vector2i;
-
+import com.mygdx.game.core.checkers.Board;
+import com.mygdx.game.core.checkers.colorT;
 
 public abstract class piece {
+    //Atrybuty
+    private int indexFigury;
+    private colorT color;
 
-    Texture texture;
-    Sprite sprite;
-    colorT color;
+    // Metody
+    public abstract int [] possibleMove (Board board, int indexPozycji);
 
-     public class Moves{
-         public vector2i size = new vector2i();
-        public vector2i location = new vector2i();
-        public int[][] MOVES = new int[16][16];
+    public void setIndexFigury(int indexFigury) {
+        this.indexFigury = indexFigury;
     }
 
-    public abstract colorT getColor();
-    public abstract Sprite getSprite();
-    public abstract void dispose();
-    public abstract String getSymbol();
-    public abstract Moves getMoves();
+    public int getIndexFigury()
+    {
+        return this.indexFigury;
+    }
+
+    public colorT getColor()
+    {
+        return this.color;
+    }
+
+    public void setColor(colorT color)
+    {
+        this.color = color;
+    }
 }

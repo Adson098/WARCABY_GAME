@@ -1,21 +1,15 @@
-package com.mygdx.game.core.chess;
+package com.mygdx.game.core.checkers;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.mygdx.game.CONFIG;
-import com.mygdx.game.core.mouseStateT;
 import com.mygdx.game.core.movesRafactoring.PosMovesCalculator;
-import com.mygdx.game.piece.Empty;
-import com.mygdx.game.vector2i;
 
 
-public class Chess {
+public class Checkers {
 
     protected colorT currentColor;
     protected PosMovesCalculator movesCalculator;
     private colorT turn;
 
-    public Chess(){
+    public Checkers(){
         currentColor = colorT.white;
         turn = colorT.white;
        // board = new Board(currentColor);

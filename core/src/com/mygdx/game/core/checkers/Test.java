@@ -1,4 +1,4 @@
-package warcaby;
+package com.mygdx.game.core.checkers;
 
 public class Test {
     public static void main(String[] args) {
@@ -9,7 +9,7 @@ public class Test {
 
         int tablica [] = new int[2];
 
-        tablica = board.plansza[40].getFigura().possibleMove(board, 40);
+        tablica = board.plansza[40].getPiece().possibleMove(board, 40);
 
         for (int i = 0; i < 2; i++)
         {

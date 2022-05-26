@@ -1,6 +1,8 @@
-package warcaby;
+package com.mygdx.game.piece;
 
-public class EmptyField extends Figura{
+import com.mygdx.game.core.checkers.Board;
+
+public class EmptyField extends piece {
     //ATRYBUTY
     public EmptyField()
     {

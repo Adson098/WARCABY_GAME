@@ -1,78 +1,101 @@
 package com.mygdx.game.piece;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.mygdx.game.core.chess.colorT;
 
-
+import com.mygdx.game.core.checkers.Board;
+import com.mygdx.game.core.checkers.colorT;
 
 public class Pawn extends piece {
+    //ATRYBUTY
+    private int possMove[] = {-1,-1};
 
-    private Texture texture;
-    private Sprite sprite;
-    private boolean isFirstMove = true;
-    private piece.Moves moves1;
-    private piece.Moves moves2;
 
-    public Pawn(colorT c) {
-        color = c;
-        if(c == colorT.white) {
-            texture = new Texture(Gdx.files.internal("jpg/128px/w_pawn.png"));
+    public Pawn()
+    {
+        this.setIndexFigury(10);
+        this.setColor(colorT.white);
+    }
+
+    public Pawn(colorT color)
+    {
+        this.setIndexFigury(10);
+        this.setColor(color);
+    }
+
+    // METODY
+    @Override
+    public int[] possibleMove(Board board, int indexPozycji) {
+
+        // JESLI PIONEK JEST BIALY
+        if (getColor() == colorT.white) {
+            // sprawdzamy LEWY
+            if (board.plansza[indexPozycji-9].getPiece().getIndexFigury() == 20 && board.plansza[indexPozycji].getPosX()-1 >= 0) // jeśli na pozycji pośreniej nie stoi żadna figura możemy zrobić zwykły ruch
+            {
+                this.possMove[0] = indexPozycji - 9;
+            }
+            else if (indexPozycji - 18 >= 0 && board.plansza[indexPozycji].getPosX() -2 >= 0) {  // sparwdzamy czy te dwie pozycje w lewo to juz nie koniec planszy
+                if (board.plansza[indexPozycji-9].getPiece().getIndexFigury() != 20 // sprawdzamy czy na pozycji pośredniej stoi jakaś figura
+                        && board.plansza[indexPozycji-18].getPiece().getIndexFigury() == 20 )  // sprawdzamy czy pozycja końcowa jest pusta
+                {
+                    if (board.plansza[indexPozycji-9].getPiece().getColor() != colorT.white) // srawddzamy czy na pozycji pośreniej jest figura przeciwnika czy nasza
+                    {
+                        this.possMove[0] = indexPozycji - 18; // zwracamy możliwą pozycje na którą możemy się ruszyć
+                    }
+                }
+            }
+            // sprawdzamy PRAWY
+            if (board.plansza[indexPozycji-7].getPiece().getIndexFigury() == 20 && board.plansza[indexPozycji].getPosX() +1 < 8) // jeśli na pozycji pośreniej nie stoi żadna figura możemy zrobić zwykły ruch
+            {
+                this.possMove[1] = indexPozycji - 7;
+            }
+            else if (indexPozycji - 14 >= 0 && board.plansza[indexPozycji].getPosX() +2 < 8){
+                if (board.plansza[indexPozycji-7].getPiece().getIndexFigury() != 20
+                        && board.plansza[indexPozycji-14].getPiece().getIndexFigury() == 20)
+                {
+                    if (board.plansza[indexPozycji-9].getPiece().getColor() != colorT.white)
+                    {
+                        this.possMove[1] = indexPozycji - 14;
+                    }
+                }
+            }
         }
-        else{
-            texture = new Texture(Gdx.files.internal("jpg/128px/b_pawn.png"));
+
+        // JESLI PIONEK JEST CZARNY
+        if (getColor() == colorT.black){
+            //spraedzamy LEWY
+            if (board.plansza[indexPozycji+7].getPiece().getIndexFigury() == 20 && board.plansza[indexPozycji].getPosX() - 1 >= 0) // napierw sprawdzamy czy na pozycji pośrednie nie ma pustego pola
+            {
+                this.possMove[0] = indexPozycji + 7; // jesli jest puste to mozemy tam zrobić ruch
+            }
+            else if (indexPozycji + 14 < 64 && board.plansza[indexPozycji].getPosX() - 2 >= 0 ) // jeśli na pozycji pośredniej coś istnieje, ale też spr czy możemy wykonac ewentualne bicie
+            {
+                if (board.plansza[indexPozycji+7].getPiece().getIndexFigury() != 20
+                        && board.plansza[indexPozycji+14].getPiece().getIndexFigury() == 20)
+                {
+                    if (board.plansza[indexPozycji+7].getPiece().getColor() != colorT.black)
+                    {
+                        this.possMove[0] = indexPozycji + 14;
+                    }
+                }
+            }
+
+            // sprawdzamy PRAWY
+            if (board.plansza[indexPozycji+9].getPiece().getIndexFigury() == 20 && board.plansza[indexPozycji].getPosX() + 1 < 8)
+            {
+                this.possMove[1] = indexPozycji + 9;
+            }
+            else if (indexPozycji + 18 < 64 && board.plansza[indexPozycji].getPosX() + 2 < 8)
+            {
+                if (board.plansza[indexPozycji+9].getPiece().getIndexFigury() != 20
+                        && board.plansza[indexPozycji+18].getPiece().getIndexFigury() == 20)
+                {
+                    if (board.plansza[indexPozycji+9].getPiece().getColor() != colorT.black)
+                    {
+                        this.possMove[1] = indexPozycji + 18;
+                    }
+                }
+            }
         }
-        sprite = new Sprite(texture);
 
-        //// moves1 2 i kolejny ruch
-        moves1 = new piece.Moves();
-        moves2 = new piece.Moves();
-        moves1.MOVES = new int[][]{
-                {3,2,3},   /// 1 lokalizacja pionka
-                {0,1,0}  /// 3 gdzie moze bic
-        };
-
-        moves1.location.x = 1;
-        moves1.location.y = 1;
-        moves1.size.x = 3;
-        moves1.size.y = 2;
-
-        /// moves2 1 ruch pionka
-
-        moves2.MOVES = new int[][]{
-                {3,2,3},   /// 1 lokalizacja pionka
-                {0,2,0},   /// 3 gdzie moze bic
-                {0,1,0}
-        };
-        moves2.location.x = 1;
-        moves2.location.y = 2;
-        moves2.size.x = 3;
-        moves2.size.y = 3;
-
+        return possMove;
     }
-
-
-    public colorT getColor(){
-        return color;
-    }
-    public Sprite getSprite(){
-        return sprite;
-    }
-    public String getSymbol(){
-        if(color == colorT.white){
-            return " P ";
-        }
-        else return " p ";
-    }
-
-    public piece.Moves getMoves(){
-        if(isFirstMove) return moves1;
-        else return moves2;
-    }
-    public void dispose(){
-        texture.dispose();
-    }
-
-
 }

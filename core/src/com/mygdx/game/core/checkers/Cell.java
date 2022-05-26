@@ -1,48 +1,46 @@
-package warcaby;
+package com.mygdx.game.core.checkers;
 
-enum cellColor
-{
-    BLACK,
-    WHITE
-}
+
+import com.mygdx.game.piece.EmptyField;
+import com.mygdx.game.piece.piece;
 
 public class Cell {
 
     // ATRUBUTY
     private String name;
-    private Figura figura;
-    private cellColor color;
+    private piece cpiece; // current piece
+    private colorT color;
     private boolean backLight;
     private int posX, posY;
 
-    public Cell (String name, cellColor color)
+    public Cell (String name, colorT color)
     {
         this.name = name;
         this.color = color;
-        this.figura = new EmptyField();
+        this.cpiece = new EmptyField();
     }
 
-    public Cell (String name, cellColor color, int posX, int posY)
+    public Cell (String name, colorT color, int posX, int posY)
     {
         this.name = name;
         this.color = color;
-        this.figura = new EmptyField();
+        this.cpiece = new EmptyField();
         this.posX = posX;
         this.posY = posY;
     }
 
-    public Cell (String name, cellColor color, Figura figura)
+    public Cell (String name, colorT color, piece cpiece)
     {
         this.name = name;
         this.color = color;
-        this.figura = figura;
+        this.cpiece = cpiece;
     }
 
-    public Cell (String name, cellColor color, Figura figura, int posX, int posY)
+    public Cell (String name, colorT color, piece cpiece, int posX, int posY)
     {
         this.name = name;
         this.color = color;
-        this.figura = figura;
+        this.cpiece = cpiece;
         this.posX = posX;
         this.posY = posY;
     }
@@ -50,15 +48,15 @@ public class Cell {
 
     // Metody
 
-    public Figura getFigura()
+    public piece getPiece()
     {
-        return this.figura;
+        return this.cpiece;
     }
 
 
-    public void setFigura( Figura figura )
+    public void setcpiece( piece cpiece )
     {
-        this.figura = figura;
+        this.cpiece = cpiece;
     }
 
 
