@@ -2,8 +2,12 @@ package com.mygdx.game;
 public class CONFIG {
 
     ///// WINDOW ////////////////////////////////
-    public static final int WINDOW_WIDTH = 1280;
+    public static final int WINDOW_WIDTH = 1080;
     public static final int WINDOW_HEIGHT = 720 ;
+
+
+    ///////////COLORS//////////////////////////////
+    public static final String bg_color = "#2e2e2e";
 
 
 

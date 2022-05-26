@@ -7,22 +7,22 @@ import com.mygdx.game.core.mouseStateT;
 import com.mygdx.game.piece.Empty;
 import com.mygdx.game.vector2i;
 
-public class ChessInputManager  {
+public class CheckersInputManager {
 
     mouseStateT mouseState;
     private Chess chess;
 
-    public ChessInputManager(Chess ichess){
+    public CheckersInputManager(Chess ichess){
         chess = ichess;
         mouseState = mouseStateT.let;
     }
 
-    private Cell mapClicktoCell(int x, int y){
+    private int[] mapClicktoCell(int x, int y){
         x -= CONFIG.CHESS_BOARD_X;
         y -= CONFIG.CHESS_BOARD_Y;
         x /= CONFIG.CELL_WIDTH;
         y /= CONFIG.CELL_HEIGHT;
-        return chess.getBoard().getPieces()[y][x];
+        return new int[]{y,x};
     }
 
 
@@ -30,8 +30,8 @@ public class ChessInputManager  {
     public void input(int x, int y){
 
         if(!Gdx.input.isTouched() && mouseState == mouseStateT.pressed){
-            Cell currCell = mapClicktoCell(x,y);
-            chess.clickCell(currCell);
+           // Cell currCell = mapClicktoCell(x,y);
+           // chess.clickCell(currCell);
             mouseState = mouseStateT.let;
 
         }

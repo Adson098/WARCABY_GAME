@@ -1,31 +1,37 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.core.MenuState;
+import com.mygdx.game.core.PlayState;
+import com.mygdx.game.engine.ChessEngine;
+import com.mygdx.game.engine.GameStateManager;
 
 public class Main extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
+	GameStateManager gsm;
+	ChessEngine gm;
+
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		gsm = new GameStateManager();
+		gm = new ChessEngine();
+		gsm.push(new MenuState(gsm));
+
+		try {
+			gm.init(gsm);
+
+		}
+		finally {
+			System.out.println("finally");
+		}
 	}
 
 	@Override
 	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+		gm.loop();
 	}
-	
-	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
+
+	public void dispose(){
+		System.out.println("dispose");
+		gm.dispose();
 	}
 }

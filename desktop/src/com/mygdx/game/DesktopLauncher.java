@@ -10,6 +10,7 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setTitle("WARCABY");
+		config.setWindowedMode(CONFIG.WINDOW_WIDTH, CONFIG.WINDOW_HEIGHT);
 		new Lwjgl3Application(new Main(), config);
 	}
 }

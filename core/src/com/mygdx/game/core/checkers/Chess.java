@@ -11,20 +11,19 @@ import com.mygdx.game.vector2i;
 
 public class Chess {
 
-    protected Board board;
     protected colorT currentColor;
     protected PosMovesCalculator movesCalculator;
-    private Cell currentCell;
     private colorT turn;
 
     public Chess(){
         currentColor = colorT.white;
         turn = colorT.white;
-        board = new Board(currentColor);
+       // board = new Board(currentColor);
         movesCalculator = new PosMovesCalculator();
-        currentCell = new Cell();
+        //currentCell = new Cell();
 
     }
+    /*
     public void clickCell(Cell cell){
         if(!(cell.getPiece() instanceof Empty)&&cell.getPiece().getColor() == currentColor) {
             currentCell = cell;
@@ -35,6 +34,9 @@ public class Chess {
             makeMove(cell);
         }
     }
+
+     */
+    /*
     public void makeMove(Cell cell){
         int cellX = cell.j;
         int cellY = cell.i;
@@ -50,9 +52,9 @@ public class Chess {
 
 
     }
-    public Board getBoard(){
-        return board;
-    }
+
+     */
+
 
     public PosMovesCalculator getMovesCalculator() {
         return movesCalculator;
