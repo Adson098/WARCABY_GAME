@@ -25,6 +25,9 @@ public class Pawn extends piece {
     @Override
     public int[] possibleMove(Board board, int indexPozycji) {
 
+        this.possMove[0] = -1;
+        this.possMove[1] = -1;
+
         // JESLI PIONEK JEST BIALY
         if (getColor() == colorT.white) {
             // sprawdzamy LEWY
