@@ -24,14 +24,10 @@ public class Pawn extends piece {
     // METODY
     @Override
     public int[] possibleMove(Board board, int indexPozycji) {
-
-        this.possMove[0] = -1;
-        this.possMove[1] = -1;
-
         // JESLI PIONEK JEST BIALY
         if (getColor() == colorT.white) {
             // sprawdzamy LEWY
-            if (board.plansza[indexPozycji-9].getPiece().getIndexFigury() == 20 && board.plansza[indexPozycji].getPosX()-1 >= 0) // jeśli na pozycji pośreniej nie stoi żadna figura możemy zrobić zwykły ruch
+            if (indexPozycji - 9 >= 0 && board.plansza[indexPozycji-9].getPiece().getIndexFigury() == 20 && board.plansza[indexPozycji].getPosX()-1 >= 0) // jeśli na pozycji pośreniej nie stoi żadna figura możemy zrobić zwykły ruch
             {
                 this.possMove[0] = indexPozycji - 9;
             }
@@ -46,7 +42,7 @@ public class Pawn extends piece {
                 }
             }
             // sprawdzamy PRAWY
-            if (board.plansza[indexPozycji-7].getPiece().getIndexFigury() == 20 && board.plansza[indexPozycji].getPosX() +1 < 8) // jeśli na pozycji pośreniej nie stoi żadna figura możemy zrobić zwykły ruch
+            if (indexPozycji - 7 >= 0 && board.plansza[indexPozycji-7].getPiece().getIndexFigury() == 20 && board.plansza[indexPozycji].getPosX() +1 < 8) // jeśli na pozycji pośreniej nie stoi żadna figura możemy zrobić zwykły ruch
             {
                 this.possMove[1] = indexPozycji - 7;
             }
@@ -54,7 +50,7 @@ public class Pawn extends piece {
                 if (board.plansza[indexPozycji-7].getPiece().getIndexFigury() != 20
                         && board.plansza[indexPozycji-14].getPiece().getIndexFigury() == 20)
                 {
-                    if (board.plansza[indexPozycji-9].getPiece().getColor() != colorT.white)
+                    if (board.plansza[indexPozycji-7].getPiece().getColor() != colorT.white)
                     {
                         this.possMove[1] = indexPozycji - 14;
                     }
@@ -65,7 +61,7 @@ public class Pawn extends piece {
         // JESLI PIONEK JEST CZARNY
         if (getColor() == colorT.black){
             //spraedzamy LEWY
-            if (board.plansza[indexPozycji+7].getPiece().getIndexFigury() == 20 && board.plansza[indexPozycji].getPosX() - 1 >= 0) // napierw sprawdzamy czy na pozycji pośrednie nie ma pustego pola
+            if (indexPozycji+7 <= 63 && board.plansza[indexPozycji+7].getPiece().getIndexFigury() == 20 && board.plansza[indexPozycji].getPosX() - 1 >= 0) // napierw sprawdzamy czy na pozycji pośrednie nie ma pustego pola
             {
                 this.possMove[0] = indexPozycji + 7; // jesli jest puste to mozemy tam zrobić ruch
             }
@@ -82,7 +78,7 @@ public class Pawn extends piece {
             }
 
             // sprawdzamy PRAWY
-            if (board.plansza[indexPozycji+9].getPiece().getIndexFigury() == 20 && board.plansza[indexPozycji].getPosX() + 1 < 8)
+            if (indexPozycji+9  <= 63 && board.plansza[indexPozycji+9].getPiece().getIndexFigury() == 20 && board.plansza[indexPozycji].getPosX() + 1 < 8)
             {
                 this.possMove[1] = indexPozycji + 9;
             }

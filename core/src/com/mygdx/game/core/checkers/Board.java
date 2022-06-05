@@ -2,7 +2,7 @@ package com.mygdx.game.core.checkers;
 
 import com.mygdx.game.piece.Pawn;
 
-public class Board {
+public class Board implements Cloneable{
 
     // Atrybuty
     public Cell[] plansza = new Cell[64];
@@ -85,6 +85,10 @@ public class Board {
         this.plansza[62] = new Cell("G1", colorT.black, new Pawn(colorT.white),6,1);
         this.plansza[63] = new Cell("H1", colorT.white,7,1);
 
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
 }

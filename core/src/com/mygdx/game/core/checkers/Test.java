@@ -1,19 +1,20 @@
 package com.mygdx.game.core.checkers;
+import com.mygdx.game.core.checkers.MoveCalc;
 
 public class Test {
-    public static void main(String[] args) {
-        // write your code here
-
+    public static void main(String[] args) throws CloneNotSupportedException {
         Board board = new Board();
         board.createNewBoard();
+        MoveCalc cals = new MoveCalc(board);
 
-        int tablica [] = new int[2];
-
-        tablica = board.plansza[40].getPiece().possibleMove(board, 40);
-
-        for (int i = 0; i < 2; i++)
+        int tablica [][] = cals.returnBestPath(44,board);
+        for (int i = 0;i < tablica.length; i++)
         {
-            System.out.println(tablica[i]);
+            for(int j = 0; j < tablica[i].length; j++)
+            {
+                System.out.print(tablica[i][j] + " ");
+            }
+            System.out.println();
         }
     }
 }
