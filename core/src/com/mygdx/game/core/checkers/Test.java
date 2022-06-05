@@ -7,7 +7,7 @@ public class Test {
         board.createNewBoard();
         MoveCalc cals = new MoveCalc(board);
 
-        int tablica [][] = cals.returnBestPath(44,board);
+        int tablica [][] = cals.returnBestPath(40,board);
         for (int i = 0;i < tablica.length; i++)
         {
             for(int j = 0; j < tablica[i].length; j++)

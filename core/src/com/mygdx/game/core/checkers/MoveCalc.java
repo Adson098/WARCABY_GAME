@@ -103,6 +103,16 @@ public class MoveCalc {
             possiblePath[0][0] = possMove[0];
             possiblePath[1][0] = possMove[1];
         }
+        if (possMove[0] == -1 && possMove[1]  != -1)
+        {
+            this.x = 1;
+            possiblePath[0][0] = possMove[1];
+        }
+        if (possMove[1] == -1 && possMove[0] != -1)
+        {
+            this.x = 1;
+            possiblePath[0][0] = possMove[0];
+        }
     }
 
     private boolean angle45 = false;
