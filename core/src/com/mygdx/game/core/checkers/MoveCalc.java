@@ -12,7 +12,7 @@ public class MoveCalc {
     private boolean firstLoop;
     // private int y = 0;
 
-    public MoveCalc(Board board) {
+    public MoveCalc() {
         for (int i = 0; i < 15; i++)
         {
             for (int j = 0; j < 10; j++)
@@ -42,8 +42,11 @@ public class MoveCalc {
     {
         board.plansza[indexPozycji].setcpiece(new Pawn(color));
         int possMove [] = new int [2];
+
         possMove = board.plansza[indexPozycji].getPiece().possibleMove(board, indexPozycji);
+
         board.plansza[indexPozycji].setcpiece(new EmptyField());
+
 
         int paths[];
 
@@ -96,23 +99,26 @@ public class MoveCalc {
             possiblePathPawn(possMove[1], board, color, paths);
         }
 
-
-        if ( (indexPozycji - possMove[0] == -7 && indexPozycji - possMove[1] == -9) || (indexPozycji - possMove[0] == 9 && indexPozycji - possMove[1] == 7) )
+        if ( (indexPozycji - possMove[0] == -7 && indexPozycji - possMove[1] == -9) || (indexPozycji - possMove[0] == 9 && indexPozycji - possMove[1] == 7)  )
         {
-            this.x = 2;
-            possiblePath[0][0] = possMove[0];
-            possiblePath[1][0] = possMove[1];
+            if (x == 0) {
+                this.x = 2;
+                possiblePath[0][0] = possMove[0];
+                possiblePath[1][0] = possMove[1];
+            }
         }
-        if (possMove[0] == -1 && possMove[1]  != -1)
+
+        if (possMove[0] == -1 && possMove[1]  != -1 && x == 0)
         {
             this.x = 1;
             possiblePath[0][0] = possMove[1];
         }
-        if (possMove[1] == -1 && possMove[0] != -1)
+        if (possMove[1] == -1 && possMove[0] != -1 && x == 0)
         {
             this.x = 1;
             possiblePath[0][0] = possMove[0];
         }
+
     }
 
     private boolean angle45 = false;
@@ -130,6 +136,11 @@ public class MoveCalc {
             int possMove [] = new int [64];
             Queen queen = (Queen) board.plansza[indexPozycji].getPiece();
             possMove = queen.possMoveAngle45(board, indexPozycji);
+
+            ////////////
+
+            /////////////
+
             for (int i = 0; i < 64; i++)
             {
                 if (possMove[i] != -1) { possiblePath[0][y] = possMove[i]; y++; }
@@ -350,6 +361,7 @@ public class MoveCalc {
                 check[i] = length;
                 length = 0;
             }
+
             path1 = 0;
             int check2 [] = new int[check.length];
             for (int i = 0; i < check.length; i++)
@@ -405,8 +417,64 @@ public class MoveCalc {
         }
         else if (board.plansza[indexPozycji].getPiece().getIndexFigury() == 11)
         {
+
+
             int path1, path2;
             possiblePathQueen(indexPozycji, bufforBoard, bufforBoard.plansza[indexPozycji].getPiece().getColor(), path);
+
+            System.out.println();
+            for (int h = 0; h < possiblePath.length; h++)
+            {
+                for (int j = 0; j < possiblePath[h].length; j++)
+                {
+                    System.out.print(possiblePath[h][j] + " ");
+                }
+                System.out.println();
+            }
+            System.out.println();
+
+
+
+            int xx = 0, yy = 0;
+
+            for (int i = 0; i < possiblePath.length; i++)
+            {
+                xx = 0;
+                for (int j = 0; j < possiblePath[i].length; j++)
+                {
+                    if (possiblePath[i][j] != -1)
+                        xx++;
+                }
+                if (i == 0)
+                {
+                    yy = xx;
+                }
+                else
+                {
+                    if (xx == yy) {}
+                    else if (xx != yy) { break; }
+                }
+                if (i == possiblePath.length -1)
+                {
+                    System.out.println();
+                    for (int h = 0; h < possiblePath.length; h++)
+                    {
+                        for (int j = 0; j < possiblePath[h].length; j++)
+                        {
+                            System.out.print(possiblePath[h][j] + " ");
+                        }
+                        System.out.println();
+                    }
+                    //      System.out.println("FLAGA_478548975389573489");
+
+
+                    System.out.println("FLAGA_400");
+                    return possiblePath;
+                }
+
+            }
+
+
 
             for (int i = 0; i < this.x; i++)
             {
@@ -456,16 +524,19 @@ public class MoveCalc {
 
             if (check[0] > check2[0])
             {
-                int  possPath[][] = { possiblePath[path1] };
+                //     int  possPath[][] = { possiblePath[path1] };
+                int  possPath[][] = {possiblePath[path1], possiblePath[path2]};
                 return possPath;
             }
             else if (check[0] < check2[0])
             {
-                int  possPath[][] = { possiblePath[path2] };
+                //     int  possPath[][] = { possiblePath[path2] };
+                int  possPath[][] = {possiblePath[path1], possiblePath[path2]};
                 return possPath;
             }
             else if (check[0] == check2[0])
             {
+                System.out.println("FLAGA_500");
                 int  possPath[][] = {possiblePath[path1], possiblePath[path2]};
                 return  possPath;
             }

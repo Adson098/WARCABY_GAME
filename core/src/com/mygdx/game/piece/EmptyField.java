@@ -14,4 +14,9 @@ public class EmptyField extends piece {
     public int[] possibleMove(Board board, int indexPozycji) {
         return new int[0];
     }
+
+    @Override
+    public void move(Board board, int startPoint, int endPoint) {
+
+    }
 }

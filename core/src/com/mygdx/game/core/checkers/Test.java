@@ -5,7 +5,7 @@ public class Test {
     public static void main(String[] args) throws CloneNotSupportedException {
         Board board = new Board();
         board.createNewBoard();
-        MoveCalc cals = new MoveCalc(board);
+        MoveCalc cals = new MoveCalc();
 
         int tablica [][] = cals.returnBestPath(40,board);
         for (int i = 0;i < tablica.length; i++)

@@ -97,4 +97,72 @@ public class Pawn extends piece {
 
         return possMove;
     }
+
+    @Override
+    public void move(Board board, int startPoint, int endPoint) {
+        int add =  Math.abs(startPoint - endPoint);
+
+        if (add%7 == 0)
+        {
+            if (startPoint > endPoint)
+            {
+                for (int i = endPoint; i < startPoint; i = i+ 7)
+                {
+                    board.plansza[i].setcpiece(new EmptyField());
+                }
+                board.plansza[endPoint].setcpiece(board.plansza[startPoint].getPiece());
+                board.plansza[startPoint].setcpiece(new EmptyField());
+            }
+            else if (startPoint < endPoint)
+            {
+                for (int i = startPoint; i < endPoint; i = i + 7)
+                {
+                    if (i != startPoint)
+                        board.plansza[i].setcpiece(new EmptyField());
+                }
+                board.plansza[endPoint].setcpiece(board.plansza[startPoint].getPiece());
+                board.plansza[startPoint].setcpiece(new EmptyField());
+            }
+
+        }
+        else if (add%9 == 0)
+        {
+            if (startPoint > endPoint)
+            {
+                for (int i = endPoint; i < startPoint; i = i+ 9)
+                {
+                    board.plansza[i].setcpiece(new EmptyField());
+                }
+                board.plansza[endPoint].setcpiece(board.plansza[startPoint].getPiece());
+                board.plansza[startPoint].setcpiece(new EmptyField());
+
+            }
+            else if (startPoint < endPoint)
+            {
+                for (int i = startPoint; i < endPoint; i = i + 9)
+                {
+                    if (i != startPoint)
+                        board.plansza[i].setcpiece(new EmptyField());
+                }
+                board.plansza[endPoint].setcpiece(board.plansza[startPoint].getPiece());
+                board.plansza[startPoint].setcpiece(new EmptyField());
+            }
+
+        }
+
+
+        if ( getColor() == colorT.white)
+        {
+            if (board.plansza[endPoint].getPosY() == 8)
+                board.plansza[endPoint].setcpiece(new Queen());
+        }
+
+        if ( getColor() == colorT.black)
+        {
+            if (board.plansza[endPoint].getPosY() == 1)
+            {
+                board.plansza[endPoint].setcpiece(new Queen(colorT.black));
+            }
+        }
+    }
 }

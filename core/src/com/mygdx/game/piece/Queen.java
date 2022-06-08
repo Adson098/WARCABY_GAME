@@ -183,6 +183,59 @@ public final class Queen extends piece {
         return possMove;
     }
 
+    @Override
+    public void move(Board board, int startPoint, int endPoint) {
+        int add =  Math.abs(startPoint - endPoint);
+
+        if (add%7 == 0)
+        {
+            if (startPoint > endPoint)
+            {
+                for (int i = endPoint; i < startPoint; i = i+ 7)
+                {
+                    board.plansza[i].setcpiece(new EmptyField());
+                }
+                board.plansza[endPoint].setcpiece(board.plansza[startPoint].getPiece());
+                board.plansza[startPoint].setcpiece(new EmptyField());
+            }
+            else if (startPoint < endPoint)
+            {
+                for (int i = startPoint; i < endPoint; i = i + 7)
+                {
+                    if (i != startPoint)
+                        board.plansza[i].setcpiece(new EmptyField());
+                }
+                board.plansza[endPoint].setcpiece(board.plansza[startPoint].getPiece());
+                board.plansza[startPoint].setcpiece(new EmptyField());
+            }
+
+        }
+        else if (add%9 == 0)
+        {
+            if (startPoint > endPoint)
+            {
+                for (int i = endPoint; i < startPoint; i = i+ 9)
+                {
+                    board.plansza[i].setcpiece(new EmptyField());
+                }
+                board.plansza[endPoint].setcpiece(board.plansza[startPoint].getPiece());
+                board.plansza[startPoint].setcpiece(new EmptyField());
+
+            }
+            else if (startPoint < endPoint)
+            {
+                for (int i = startPoint; i < endPoint; i = i + 9)
+                {
+                    if (i != startPoint)
+                        board.plansza[i].setcpiece(new EmptyField());
+                }
+                board.plansza[endPoint].setcpiece(board.plansza[startPoint].getPiece());
+                board.plansza[startPoint].setcpiece(new EmptyField());
+            }
+
+        }
+    }
+
 
     public int[] possMoveAngle45(Board board, int indexPozycji) {
         // czyszczenie tablicy
@@ -442,3 +495,4 @@ public final class Queen extends piece {
         return false;
     }
 }
+

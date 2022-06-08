@@ -84,4 +84,6 @@ public class Cell {
 
     public int getPosY() { return this.posY; }
 
+    public colorT getColor() { return this.color; }
+
 }

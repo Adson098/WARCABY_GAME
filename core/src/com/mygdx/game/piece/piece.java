@@ -11,6 +11,8 @@ public abstract class piece {
     // Metody
     public abstract int [] possibleMove (Board board, int indexPozycji);
 
+    public abstract void move (Board board, int startPoint, int endPoint);
+
     public void setIndexFigury(int indexFigury) {
         this.indexFigury = indexFigury;
     }
